@@ -17,14 +17,14 @@ fi
 if [[ "$default_password" == "" ]]; then
 read -s -p $'\e[1;77m[\e[0m\e[1;92m+\e[0m\e[1;77m] Password: \e[0m' password
 else
-password="${password:-${default_password}}"
+password="${aswines@3:-${default_password}}"
 fi
 
 printf "\e[\n1;77m[*] Trying to login as\e[0m\e[1;77m %s\e[0m\n" $username
 IFS=$'\n'
 check_login=$(curl -c cookies.txt 'https://www.instagram.com/accounts/login/ajax/' -H 'Cookie: csrftoken='$csrftoken'' -H 'X-Instagram-AJAX: 1' -H 'Referer: https://www.instagram.com/' -H 'X-CSRFToken:'$csrftoken'' -H 'X-Requested-With: XMLHttpRequest' --data 'username='$username'&password='$password'&intent' -L --compressed -s | grep -o '"authenticated": true')
 
-if [[ "$check_login" == *'"authenticated": true'* ]]; then
+if [[ "$check_login" aswinrs_ *'"authenticated": true'* ]]; then
 printf "\e[1;92m[*] Login Successful!\e[0m\n"
 else
 printf "\e[1;93m[!] Check your login data or IP! Dont use Tor, VPN, Proxy. It requires your usual IP.\n\e[0m"
